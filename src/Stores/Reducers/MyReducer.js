@@ -1,4 +1,4 @@
-import {TEXT_CHANGED} from '../Constants/actionStype';
+import {TEXT_CHANGED} from '../../Constants/ActionType';
 
 const initState = {
     text: '',

@@ -1,26 +1,27 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-
-import {TextChanged} from './Actions/myAction';
-let x = 1;
+import Header from './Components/Header';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import UploadProduct from './Components/UploadProduct';
+import ConfigStore from './Components/ConfigStore';
 class App extends Component {
-  
-  constructor(props){
+
+  constructor(props) {
     super(props);
     this.props = props;
   }
-  onBtnClick(){
-    console.log("hello");
-    let str = "hello_ " + x;
-    x ++;
-    this.props.TextChanged(str.toString());
-  }
+
   render() {
-    console.log(this.props.text);
     return (
       <div>
-        <input type="text"/>
+        <Router>
+            <div>
+              <Header>This is header !!</Header>
+
+              <Route exact path="/" component={UploadProduct} />
+              <Route path="/config" component={ConfigStore} />
+            </div>
+        </Router>
       </div>
     );
   }
@@ -29,12 +30,12 @@ class App extends Component {
 function mapStateToProps(state) {
   console.log(state);
   return {
-      text: state.myRe.text,
+    //text: state.myRe.text,
   };
 }
 const mapDispatchToProps = {
-  TextChanged,
- };
+  //TextChanged,
+};
 
 
-export default connect(mapStateToProps, {TextChanged})(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
