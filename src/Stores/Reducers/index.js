@@ -1,7 +1,9 @@
 import {combineReducers} from 'redux';
-import MyReducer from './MyReducer';
+import localizeReducer from './LocalizeReducer';
+import languageReducer from './ConfigReducer';
 const rootReducer = combineReducers({
-    MyReducer,
+    localize: localizeReducer,
+    language:languageReducer,
 });
 
 export default rootReducer;

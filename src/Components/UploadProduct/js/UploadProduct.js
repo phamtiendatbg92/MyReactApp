@@ -2,6 +2,7 @@ import React from 'react';
 import '../css/UploadProduct.css';
 import MyButton from 'Common/MyButton.js';
 import TextUtility from 'Utilities/TextUltility';
+import ListProduct from './ListProduct';
 class UploadProduct extends React.Component {
 
     constructor(props){
@@ -17,6 +18,7 @@ class UploadProduct extends React.Component {
         return (
             <div>
                 <h1 className='upload-product-mainframe'>Upload product page</h1>
+                <ListProduct/>
                 <MyButton onClick={this.onClick}>Add new</MyButton>
             </div>
 

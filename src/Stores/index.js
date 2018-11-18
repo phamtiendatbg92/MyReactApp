@@ -3,6 +3,7 @@ import createSagaMiddleware from "redux-saga";
 import rootReducer from "./Reducers";
 import rootSaga from "./Sagas";
 import languageConfig from './Config/LanguageConfig';
+import {VN} from '../Constants';
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ && process.env.NODE_ENV !== "production" ?
     window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
         name: "FL_HOME",
@@ -14,9 +15,9 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ && process.
 const createAppStore = () => {
     // get config language from config file
     let initialState = {};
-    initialState.language = languageConfig;
-
-
+    
+    initialState.localize = VN;
+    initialState.language = languageConfig[VN];
     
     /*
     const sagas = createSagaMiddleware();

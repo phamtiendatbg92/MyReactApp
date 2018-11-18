@@ -2,10 +2,14 @@
 
 const config = {
     vn : {
-        HELLO : "Xin chào"
+        header_catagory : {
+            MANAGE_PRODUCT: "Quản Lý SP",
+        }
     },
     en : {
-        HELLO : "Hello"
+        header_catagory : {
+            MANAGE_PRODUCT: "Manage Product",
+        }
     }
 
 }
