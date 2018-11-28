@@ -18,6 +18,17 @@ const createAppStore = () => {
     
     initialState.localize = VN;
     initialState.language = languageConfig[VN];
+    const isAuthen = localStorage.getItem("myApp_isAuthen");
+    console.log(isAuthen);
+    initialState.authenReducer = {};
+    if(isAuthen === "true")
+    {
+        initialState.authenReducer.isAuthen = true;
+    }
+    else
+    {   
+        initialState.authenReducer.isAuthen = false;
+    }
     
     /*
     const sagas = createSagaMiddleware();

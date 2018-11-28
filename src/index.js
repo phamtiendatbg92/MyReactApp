@@ -12,6 +12,7 @@ import { Provider } from "react-redux";
 
     const store = createAppStore();
 
+    
     const appRoot = (
         <Provider store={store}>
             <App />

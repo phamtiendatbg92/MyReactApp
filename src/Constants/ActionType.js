@@ -1,1 +1,2 @@
-export const TEXT_CHANGED = 'textChanged';
+export const UPLOAD_PRODUCT_OPEN_MODAL = 'UPLOAD_PRODUCT_OPEN_MODAL';
+export const SET_AUTHEN_STATE = 'SET_AUTHEN_STATE';

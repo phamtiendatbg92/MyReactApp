@@ -18,7 +18,6 @@ class Header extends React.Component {
 }
 
 function mapStateToProps(state) {
-    console.log(state);
     return {
       manageProduct: state.language.header_catagory[MANAGE_PRODUCT],
     };
