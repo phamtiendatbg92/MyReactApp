@@ -1,8 +1,8 @@
 import React from 'react';
 import '../css/LoginForm.css';
 import { createObjFromFormData } from 'Utilities/FormUtility';
-import { connect } from 'react-redux';
-import { setAuthenState } from '../../../Actions/AuthenAction';
+
+
 class LoginForm extends React.Component {
     constructor(props) {
         super(props);
@@ -16,6 +16,7 @@ class LoginForm extends React.Component {
             dataJson.passWord === "abc") {
                 localStorage.setItem("myApp_isAuthen","true");
                 this.props.setAuthenState(true);
+                this.props.setUserRole(1);
         }
     }
     render() {
@@ -30,13 +31,6 @@ class LoginForm extends React.Component {
     }
 }
 
-function mapStateToProps(state) {
-    return {
-        isAuthen: state.authenReducer.isAuthen,
-    };
-}
-const mapDispatchToProps = {
-    setAuthenState,
-};
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);
+
+export default LoginForm;

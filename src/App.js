@@ -4,7 +4,7 @@ import Header from './Components/Header';
 import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
 import UploadProduct from './Components/UploadProduct';
 import ConfigStore from './Components/ConfigStore';
-import Login from './Components/Login/js/LoginForm';
+import Login from './Components/Login';
 class App extends Component {
 
   constructor(props) {
@@ -34,7 +34,7 @@ class App extends Component {
 function mapStateToProps(state) {
   console.log(state);
   return {
-    isAuthen: state.authenReducer.isAuthen,
+    isAuthen: state.userReducer.isAuthen,
   };
 }
 const mapDispatchToProps = {

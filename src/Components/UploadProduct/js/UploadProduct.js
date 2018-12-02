@@ -5,6 +5,7 @@ import ListProduct from './ListProduct';
 import { ModalChanged } from 'Actions/UpLoadProductAction';
 import { connect } from 'react-redux';
 import RegisterProduct from './RegisterProduct';
+import NavStore from './NavStore';
 class UploadProduct extends React.Component {
 
     constructor(props) {
@@ -21,7 +22,8 @@ class UploadProduct extends React.Component {
     render() {
         return (
             <div>
-                <h1 className='upload-product-mainframe'>Upload product page</h1>
+                <h1 className='upload-product-mainframe'>Danh sách cửa hàng</h1>
+                <NavStore />
                 <ListProduct />
                 <MyButton onClick={this.addNewBtnOnClick}>Add new</MyButton>
                 <RegisterProduct />

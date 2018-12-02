@@ -20,14 +20,14 @@ const createAppStore = () => {
     initialState.language = languageConfig[VN];
     const isAuthen = localStorage.getItem("myApp_isAuthen");
     console.log(isAuthen);
-    initialState.authenReducer = {};
+    initialState.userReducer = {};
     if(isAuthen === "true")
     {
-        initialState.authenReducer.isAuthen = true;
+        initialState.userReducer.isAuthen = true;
     }
     else
     {   
-        initialState.authenReducer.isAuthen = false;
+        initialState.userReducer.isAuthen = false;
     }
     
     /*
