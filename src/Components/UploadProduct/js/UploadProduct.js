@@ -18,12 +18,18 @@ class UploadProduct extends React.Component {
 
         this.props.ModalChanged(true);
     }
+    renderStoreNav(){
+        console.log(this.props.userRole);
+        if(this.props.userRole == 1){
+            return <NavStore />;
+        }
+    }
 
     render() {
         return (
             <div>
                 <h1 className='upload-product-mainframe'>Danh sách cửa hàng</h1>
-                <NavStore />
+                {this.renderStoreNav()}
                 <ListProduct />
                 <MyButton onClick={this.addNewBtnOnClick}>Add new</MyButton>
                 <RegisterProduct />
@@ -36,6 +42,7 @@ class UploadProduct extends React.Component {
 function mapStateToProps(state) {
     return {
         showModel: state.upLoadProductReducer.showModel,
+        userRole: state.userReducer.role,
     };
 }
 const mapDispatchToProps = {

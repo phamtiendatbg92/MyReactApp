@@ -10,25 +10,42 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ && process.
     }) : compose;
 
 
-
-    
-const createAppStore = () => {
-    // get config language from config file
+const initializeStateData = () => {
     let initialState = {};
     
     initialState.localize = VN;
     initialState.language = languageConfig[VN];
     const isAuthen = localStorage.getItem("myApp_isAuthen");
-    console.log(isAuthen);
+    
     initialState.userReducer = {};
     if(isAuthen === "true")
     {
         initialState.userReducer.isAuthen = true;
+        initialState.userReducer.role = 1;
     }
     else
     {   
         initialState.userReducer.isAuthen = false;
+        initialState.userReducer.role = 0;
     }
+    const data = [];
+    for (let i = 0; i < 10; i++) {
+      data[i] = {
+        no: i,
+        productName: "product name",
+        branch: "branch",
+        subBranch: "sub-branch",
+        price:1000,
+        inventory: 1
+      }
+    }
+    initialState.productReducer = {};
+    initialState.productReducer.productList = data;
+    return initialState;
+};
+    
+const createAppStore = () => {
+    // get config language from config file
     
     /*
     const sagas = createSagaMiddleware();
@@ -39,6 +56,7 @@ const createAppStore = () => {
         middlewares = applyMiddleware(flMiddleWare);
     }
     */
+    const initialState = initializeStateData();
     const store = createStore(rootReducer, initialState);
     //sagas.run(rootSaga);
     return store;

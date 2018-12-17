@@ -1,6 +1,8 @@
 import React from 'react'
 import NavStoreItem from './NavStoreItem';
 import '../css/NavStore.css';
+import {connect} from 'react-redux';
+import {setProductList} from '../../../Actions/ProductAction'
 class NavStore extends React.Component{
 
     constructor(){
@@ -8,7 +10,7 @@ class NavStore extends React.Component{
         this.state = {selectedID : 0};
 
         let data = [];
-        for(let i = 0; i < 5 ; i++){
+        for(let i = 0; i < 30 ; i++){
             const storeName = `Store ${i}`;
             const storeItem = {
                 storeName : storeName,
@@ -20,6 +22,19 @@ class NavStore extends React.Component{
     }
     onclickItem(index){
         this.setState({ selectedID: index });
+        const data = [];
+        for (let i = 0; i < 10; i++) {
+        data[i] = {
+            no: i,
+            productName: "product name " + index,
+            branch: "branch " + index,
+            subBranch: "sub-branch " + index,
+            price: index*1000,
+            inventory: 1 + index
+            }
+        }
+        this.props.setProductList(data);
+    
     }
     renderListStore(){
         return this.storeArr.map((item, index) => {
@@ -38,5 +53,13 @@ class NavStore extends React.Component{
         );
     }
 }
+function mapStateToProps(state){
+    return {
+        
+    }
+}
+const mapDispatchToProps = {
+    setProductList
+}
 
-export default NavStore;
+export default connect(mapStateToProps, mapDispatchToProps)(NavStore);

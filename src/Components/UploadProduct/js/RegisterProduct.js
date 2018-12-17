@@ -51,15 +51,11 @@ class RegisterProduct extends React.Component {
         return (
             <Modal isOpen={this.props.showModel}>
                 <form onSubmit={this.handleSubmit}>
-                    <label htmlFor="productName">Tên Sản Phẩm</label>
-                    <MyInputText id="username" name="productName" />
-                    <br />
-                    <label htmlFor="branch">Loại Sản Phẩm</label>
-                    <MyInputText id="branch" name="branch" />
-                    <br />
-                    <label htmlFor="subBranch">Loại Sản Phẩm (Nhỏ)</label>
-                    <MyInputText id="subBranch" name="subBranch" />
-                    <br />
+                    <MyInputText id="username" name="productName" content="Tên Sản Phẩm"/>
+                    <MyInputText id="branch" name="branch" content="Loại Sản Phẩm"/>
+                    <MyInputText id="subBranch" name="subBranch" content="Loại Sản Phẩm (Nhỏ)"/>
+                    <MyInputText id="price" name="price" content="Giá"/>
+                    <br></br>
                     <MyButton >OK</MyButton>
                     <MyButton onClick={this.cancelBtnOnClick}>Cancel</MyButton>
                 </form>
