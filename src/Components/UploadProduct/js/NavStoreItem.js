@@ -1,13 +1,9 @@
 import React from 'react'
 import '../css/NavStoreItem.css';
 class NavStoreItem extends React.Component{
-    constructor(){
-        super();
-
-    }
-    
+ 
     render(){
-        const {isActive, id } = this.props;
+        const {isActive } = this.props;
         let childrenClass = "nav-store-item-children";
         if(isActive){
             childrenClass += " my-item-active";

@@ -1,14 +1,8 @@
-import { createStore, applyMiddleware, compose } from "redux";
-import createSagaMiddleware from "redux-saga";
+import { createStore } from "redux";
 import rootReducer from "./Reducers";
-import rootSaga from "./Sagas";
 import languageConfig from './Config/LanguageConfig';
 import {VN} from '../Constants';
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ && process.env.NODE_ENV !== "production" ?
-    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
-        name: "FL_HOME",
-    }) : compose;
-
+import ProductObject from 'Objects/ProductObject';
 
 const initializeStateData = () => {
     let initialState = {};
@@ -30,14 +24,8 @@ const initializeStateData = () => {
     }
     const data = [];
     for (let i = 0; i < 10; i++) {
-      data[i] = {
-        no: i,
-        productName: "product name",
-        branch: "branch",
-        subBranch: "sub-branch",
-        price:1000,
-        inventory: 1
-      }
+        const item = new ProductObject(i + 1, "product name " + (i + 1), "branch", "sub-branch", 1000);
+        data.push(item);
     }
     initialState.productReducer = {};
     initialState.productReducer.productList = data;

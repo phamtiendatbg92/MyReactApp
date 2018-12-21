@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Header from './Components/Header';
-import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import UploadProduct from './Components/UploadProduct';
 import ConfigStore from './Components/ConfigStore';
 import Login from './Components/Login';
@@ -32,7 +32,6 @@ class App extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log(state);
   return {
     isAuthen: state.userReducer.isAuthen,
   };

@@ -18,7 +18,6 @@ class ListProduct extends React.Component {
             <th>Branch</th>
             <th>Sub-Branch</th>
             <th>Price</th>
-            <th>Inventory</th>
           </tr>
         </thead>
         <tbody>

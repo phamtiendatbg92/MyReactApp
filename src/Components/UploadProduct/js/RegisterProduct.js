@@ -1,17 +1,23 @@
 import React from 'react';
-import Modal from 'react-modal';
+import MyModal from "Common/MyModal.js"
 import MyButton from 'Common/MyButton.js';
 import { connect } from 'react-redux';
-import { ModalChanged } from 'Actions/UpLoadProductAction';
+import { ModalChanged, ModalDataChanged } from 'Actions/RegisterModalAction';
+import { setProductList } from 'Actions/ProductAction';
 import { createObjFromFormData } from 'Utilities/FormUtility';
 import MyInputText from 'Common/MyInputText';
-Modal.setAppElement('#root');
+import "../css/RegisterProduct.css";
+import ProductObject from "Objects/ProductObject";
 class RegisterProduct extends React.Component {
     constructor(props) {
         super(props);
 
         this.cancelBtnOnClick = this.cancelBtnOnClick.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+
+        this.handleTextChange = this.handleTextChange.bind(this);
+
+
     }
     cancelBtnOnClick(event) {
         // don't allow form submit
@@ -22,9 +28,27 @@ class RegisterProduct extends React.Component {
     handleSubmit(event) {
         event.preventDefault();
         const data = new FormData(event.target);
+        const formData = createObjFromFormData(data);
+        //console.log(createObjFromFormData(data));
+        let { productList } = this.props;
+        // add new case
+        if (this.isAddNew) {
+            const length = productList.length;
 
-        console.log(createObjFromFormData(data));
-
+            const newObj = new ProductObject(length + 1, formData.productName, formData.branch, formData.subBranch, formData.price);
+            productList.push(newObj);
+            const newArr = [...productList];
+            this.props.setProductList(newArr);
+        } else { // edit case
+            let { product } = this.props;
+            product.productName = formData.productName;
+            product.branch = formData.branch;
+            product.subBranch = formData.subBranch;
+            product.price = formData.price;
+            productList[product.no - 1] = product;
+            const newArr = [...productList];
+            this.props.setProductList(newArr);
+        }
 
         /*
         fetch('/api/form-submit-url', {
@@ -47,28 +71,66 @@ class RegisterProduct extends React.Component {
         this.props.ModalChanged(false);
     }
 
+    handleTextChange(event) {
+        let { product } = this.props;
+        const newObj = Object.assign({}, product);
+        switch (event.target.name) {
+            case "productName":
+                newObj.productName = event.target.value;
+                break;
+            case "branch":
+                newObj.branch = event.target.value;
+                break;
+            case "subBranch":
+                newObj.subBranch = event.target.value;
+                break;
+            case "price":
+                newObj.price = event.target.value;
+                break;
+            default:
+                break;
+        }
+
+        this.props.ModalDataChanged(newObj);
+    }
+
+
     render() {
+        const { no, productName, branch, subBranch, price, imgUrl } = this.props.product;
+
+        if (no === -1) {
+            this.isAddNew = true;
+        }
+        else {
+            this.isAddNew = false;
+        }
+
         return (
-            <Modal isOpen={this.props.showModel}>
+            <MyModal isOpen={this.props.showModel}>
                 <form onSubmit={this.handleSubmit}>
-                    <MyInputText id="username" name="productName" content="Tên Sản Phẩm"/>
-                    <MyInputText id="branch" name="branch" content="Loại Sản Phẩm"/>
-                    <MyInputText id="subBranch" name="subBranch" content="Loại Sản Phẩm (Nhỏ)"/>
-                    <MyInputText id="price" name="price" content="Giá"/>
+                    <MyInputText name="productName" content="Tên Sản Phẩm" value={productName} handleChange={this.handleTextChange} />
+                    <MyInputText name="branch" content="Loại Sản Phẩm" value={branch} handleChange={this.handleTextChange} />
+                    <MyInputText name="subBranch" content="Loại Sản Phẩm (Nhỏ)" value={subBranch} handleChange={this.handleTextChange} />
+                    <MyInputText name="price" content="Giá" value={price} handleChange={this.handleTextChange} />
+                    <input type="file" name="productImage" />
                     <br></br>
                     <MyButton >OK</MyButton>
                     <MyButton onClick={this.cancelBtnOnClick}>Cancel</MyButton>
                 </form>
-            </Modal>
+            </MyModal>
         );
     }
 }
 function mapStateToProps(state) {
     return {
-        showModel: state.upLoadProductReducer.showModel,
+        showModel: state.registerModalReducer.showModel,
+        product: state.registerModalReducer.product,
+        productList: state.productReducer.productList,
     };
 }
 const mapDispatchToProps = {
     ModalChanged,
+    ModalDataChanged,
+    setProductList,
 };
 export default connect(mapStateToProps, mapDispatchToProps)(RegisterProduct);

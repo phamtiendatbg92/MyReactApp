@@ -10,7 +10,7 @@ class NavStore extends React.Component{
         this.state = {selectedID : 0};
 
         let data = [];
-        for(let i = 0; i < 30 ; i++){
+        for(let i = 0; i < 5 ; i++){
             const storeName = `Store ${i}`;
             const storeItem = {
                 storeName : storeName,
@@ -23,7 +23,7 @@ class NavStore extends React.Component{
     onclickItem(index){
         this.setState({ selectedID: index });
         const data = [];
-        for (let i = 0; i < 10; i++) {
+        for (let i = 0; i < 3; i++) {
         data[i] = {
             no: i,
             productName: "product name " + index,

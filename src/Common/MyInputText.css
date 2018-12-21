@@ -1,0 +1,11 @@
+.myInputText{
+    width: 150px;
+}
+.myLabel{
+    display: block;
+    width: 200px;
+    float: left;
+}
+.myInputText-div{
+    margin: 5px;
+}
